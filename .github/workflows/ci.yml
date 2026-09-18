@@ -33,8 +33,10 @@ jobs:
         run: cmake --build build
 
       - name: Run static analysis
+
         run: |
-          find src -name '*.cpp' | xargs clang-tidy -p build
+          find src -name '*.cpp' -print0 |
+          xargs -0 clang-tidy -p build --header-filter="^${GITHUB_WORKSPACE}/(src|include|tests)/"
 
       - name: Run tests
         run: ctest --test-dir build --output-on-failure
