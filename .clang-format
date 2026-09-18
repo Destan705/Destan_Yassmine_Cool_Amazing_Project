@@ -6,4 +6,4 @@ ColumnLimit: 100
 PointerAlignment: Left
 BreakBeforeBraces: Attach
 AllowShortFunctionsOnASingleLine: None
-SortIncludes: CaseSensitivez
+SortIncludes: CaseSensitive
