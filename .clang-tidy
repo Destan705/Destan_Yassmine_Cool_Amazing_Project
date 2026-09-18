@@ -2,3 +2,5 @@ Checks: '-*,bugprone-*,performance-*,modernize-use-nullptr,modernize-use-overrid
 WarningsAsErrors: ''
 HeaderFilterRegex: '.*'
 FormatStyle: none
+HeaderFilterRegex: '.*/(src|include|tests)/.*'
+ExcludeHeaderFilterRegex: '.*/build/_deps/.*'
