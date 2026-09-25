@@ -9,15 +9,26 @@ bool checkCloseWindow() {
     return true;
 }
 
-bool eventDetected() {
-    cout << "Event Detected";
+bool processPlatformEvents() {
+    cout << "Process event";
+    cout << "Convert event into usable input for engine";
     return true;
 }
 
-void updateEngineState() {
+void updateEngineState(float delta_time) {
+    cout << delta_time;
     cout << "Update Engine State";
 }
 
-void renderEngine() {
-    cout << "Rendering Engine Frames";
+void renderPlatform() {
+    cout << "Rendering Platform";
+}
+
+bool initializePlatform() {
+    cout << "Initializing Platform";
+    return true;
+}
+
+void shutdownPlatform() {
+    cout << "Shutting Down Platform";
 }

@@ -3,8 +3,12 @@
 
 bool checkCloseWindow();
 
-bool eventDetected();
+bool processPlatformEvents();
 
-void updateEngineState();
+void updateEngineState(float delta_time);
 
-void renderEngine();
+void renderPlatform();
+
+bool initializePlatform();
+
+void shutdownPlatform();
