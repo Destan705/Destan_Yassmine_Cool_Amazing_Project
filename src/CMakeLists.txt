@@ -1,4 +1,4 @@
-add_executable(game_engine main.cpp)
+add_executable(game_engine main.cpp engine.cpp placeholder.cpp)
 target_link_libraries(game_engine PRIVATE SDL3::SDL3)
 if(WIN32)
     add_custom_command(
