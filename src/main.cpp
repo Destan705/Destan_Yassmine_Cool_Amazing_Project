@@ -1,5 +1,7 @@
 #include <SDL3/SDL.h>
 #include <iostream>
+#include "Renderer.hpp"
+#include <stdexcept>
 
 int main() {
     // Initializing SDL3
@@ -18,21 +20,18 @@ int main() {
         return 1;
     }
     std::cout << "Window is open" << std::endl;
+//when your renderer constructor fails, it throws an exeception.
+   try{
     // Open Renderer
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, nullptr);
-    // Checks the Renderer
-    if (renderer == nullptr) {
-        std::cerr << "Renderer could not be initialized: " << SDL_GetError() << std::endl;
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
-    std::cout << "Renderer is initialized" << std::endl;
-
-    SDL_SetRenderVSync(renderer, 1);
+    Renderer renderer(window);
+   }catch(const std::runtime_error& e){
+    std::cerr << e.what()<< std::endl;
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    return 1;}
+   
 
     // Clean-up Path- destroys both the renderer and the window
-    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 
     SDL_Quit();
