@@ -24,6 +24,25 @@ int main() {
    try{
     // Open Renderer
     Renderer renderer(window);
+
+bool running=true;
+Color BgColor;// White background
+Color rectColor{255, 0, 0, 255}; // Red rectangle
+Bounds rectBounds{100.0f, 100.0f, 200.0f, 150.0f}; // Rectangle position and size
+SDL_Event event;
+
+    while(running==true){
+     // Check for events (like closing the window)
+    while(SDL_PollEvent(&event)){
+         if(event.type==SDL_EVENT_QUIT){
+            running=false;
+        }
+    }
+    renderer.ClearScreen(BgColor);
+    renderer.DrawFilledRect(rectColor, rectBounds);
+    renderer.Present();
+       
+    }
    }catch(const std::runtime_error& e){
     std::cerr << e.what()<< std::endl;
     SDL_DestroyWindow(window);
