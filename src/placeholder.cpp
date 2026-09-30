@@ -9,12 +9,6 @@ bool checkCloseWindow() {
     return true;
 }
 
-bool processPlatformEvents() {
-    cout << "Process event";
-    cout << "Convert event into usable input for engine";
-    return true;
-}
-
 void updateEngineState(float delta_time) {
     cout << delta_time;
     cout << "Update Engine State";
