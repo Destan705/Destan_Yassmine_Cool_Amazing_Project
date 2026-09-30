@@ -1,4 +1,5 @@
 #include "../include/placeholder.h" 
+#include "../include/platform.h"
 #include "../include/input.h"
 #include <iostream>
 #include <chrono>

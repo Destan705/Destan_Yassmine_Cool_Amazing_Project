@@ -2,6 +2,8 @@
 #include <SDL3/SDL.h>
 #include <array>
 
+
+
 SDL_Event event;
 const bool* keystate;
 std::array<bool, SDL_SCANCODE_COUNT> pressedThisFrame{};

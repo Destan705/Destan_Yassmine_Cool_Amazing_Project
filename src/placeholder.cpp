@@ -14,15 +14,3 @@ void updateEngineState(float delta_time) {
     cout << "Update Engine State";
 }
 
-void renderPlatform() {
-    cout << "Rendering Platform";
-}
-
-bool initializePlatform() {
-    cout << "Initializing Platform";
-    return true;
-}
-
-void shutdownPlatform() {
-    cout << "Shutting Down Platform";
-}
