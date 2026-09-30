@@ -1,25 +1,22 @@
-#include "renderer.h"
+#include "../include/renderer.h"
+#include <iostream>
 #include <stdexcept>
 #include <string>
-#include <iostream>
 
-
-Renderer::Renderer(SDL_Window* window){
-renderer=SDL_CreateRenderer(window, nullptr);
- if (renderer == nullptr) {
-        throw std::runtime_error(std::string("Renderer error: ")+ std::string(SDL_GetError())) ;
+Renderer::Renderer(SDL_Window* window) {
+    renderer = SDL_CreateRenderer(window, nullptr);
+    if (renderer == nullptr) {
+        throw std::runtime_error(std::string("Renderer error: ") + std::string(SDL_GetError()));
     }
     std::cout << "Renderer is initialized" << std::endl;
     SDL_SetRenderVSync(renderer, 1);
 }
-Renderer::~Renderer(){
- SDL_DestroyRenderer(renderer);
+Renderer::~Renderer() {
+    SDL_DestroyRenderer(renderer);
 }
 
-void Renderer::Present(){
-     SDL_RenderPresent(renderer);
-
-
+void Renderer::Present() {
+    SDL_RenderPresent(renderer);
 }
 void Renderer::ClearScreen(const Color& color) {
     SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.alpha);

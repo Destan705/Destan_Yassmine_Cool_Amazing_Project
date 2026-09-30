@@ -3,14 +3,10 @@
 
 using namespace std;
 
-
-bool checkCloseWindow() {
-    cout << "Close Window";
-    return true;
-}
-
 void updateEngineState(float delta_time) {
-    cout << delta_time;
-    cout << "Update Engine State";
+    // Left empty for now because there are no game systems to update yet.
+    // Later, this will update engine systems and call the game's update logic,
+    // passing delta_time to anything that needs elapsed time, such as movement and animation.
+    return;
 }
 
