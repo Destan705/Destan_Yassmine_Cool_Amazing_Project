@@ -18,6 +18,7 @@ bool initializePlatform() {
     // Create a window
     window = SDL_CreateWindow("My SDL3 Window", 800, 600, SDL_WINDOW_OPENGL);
 
+
     if (window == nullptr) {
         std::cerr << "Window could not be created! SDL_Error:" << SDL_GetError() << std::endl;
         SDL_Quit();
@@ -29,9 +30,11 @@ bool initializePlatform() {
 
     try {
         renderer = std::make_unique<Renderer>(window);
+        renderer->LoadTexture("assets/test.bmp");
 
     } catch (const std::runtime_error& e) {
         std::cerr << e.what() << std::endl;
+        renderer.reset();
         SDL_DestroyWindow(window);
         window = nullptr;
         SDL_Quit();
@@ -52,7 +55,8 @@ void renderPlatform() {
     // Draw a red rectangle in the center of the screen
     Bounds rectBounds{300.0f, 200.0f, 200.0f, 200.0f};
     renderer->DrawFilledRect(Color{255, 0, 0, 255}, rectBounds);
-
+    
+    renderer->DrawTexture(Bounds{100.0f, 100.0f, 200.0f, 200.0f});
     // Present the rendered frame on the screen
     renderer->Present();
 }

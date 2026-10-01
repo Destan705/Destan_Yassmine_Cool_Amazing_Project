@@ -4,11 +4,11 @@
 
 
 
+
 class Renderer{
     public:
     explicit Renderer( SDL_Window* window);// contructor
     ~Renderer();// destructor
-    
     Renderer(const Renderer&) = delete;             // sign #1: no making a new box as a copy
     Renderer& operator=(const Renderer&) = delete;  // sign #2: no turning an old box into a copy
 
@@ -22,13 +22,18 @@ class Renderer{
     // Call once at the end of every frame, after drawing.
 
     void Present();
-    
 
     // Draws a filled rectangle at the given position and size.
-
     void DrawFilledRect(const Color& color, const Bounds& bounds);
+
+    //load texture from file
+    void LoadTexture(const char* filePath);
+
+    //Draws the loaded texture at the given position and size.
+    void DrawTexture(const Bounds& bounds);
     
 
     private:
     SDL_Renderer* renderer=nullptr;
+    SDL_Texture* texture=nullptr;
 };
