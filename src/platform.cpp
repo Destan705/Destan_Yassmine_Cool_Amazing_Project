@@ -1,4 +1,4 @@
-#include "../include/renderer.h"
+#include "renderer.h"
 #include <SDL3/SDL.h>
 #include <iostream>
 #include <memory>
@@ -66,6 +66,7 @@ void shutdownPlatform(){
     window = nullptr;
     }
     //Quit SDL subsystems
+    std::cout << "Engine is shutdown";
     SDL_Quit();
 
 }

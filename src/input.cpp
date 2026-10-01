@@ -1,4 +1,4 @@
-#include "../include/input.h"
+#include "input.h"
 #include <SDL3/SDL.h>
 #include <array>
 
