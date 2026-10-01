@@ -11,7 +11,7 @@ void engine() {
 
     bool running = initializePlatform();
 
-    initializeInput();
+    if (running) { initializeInput();}
 
     if (!running) {
         cout << "Error occured while initializing engine";
