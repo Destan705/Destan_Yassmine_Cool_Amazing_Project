@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <string>
 #include <iostream>
+#include "logger.h"
 
 
 
@@ -10,7 +11,7 @@ renderer=SDL_CreateRenderer(window, nullptr);
  if (renderer == nullptr) {
         throw std::runtime_error(std::string("Renderer error: ")+ std::string(SDL_GetError())) ;
     }
-    std::cout << "Renderer is initialized" << std::endl;
+ logMessage(logger_level::Info, "Renderer is initialized");
     SDL_SetRenderVSync(renderer, 1);
 }
 Renderer::~Renderer(){
