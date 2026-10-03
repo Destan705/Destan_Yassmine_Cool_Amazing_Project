@@ -1,3 +1,4 @@
+#include "logger.h"
 #include "renderer.h"
 #include <SDL3/SDL.h>
 #include <iostream>
@@ -10,7 +11,7 @@ std::unique_ptr<Renderer> renderer = nullptr;
 bool initializePlatform() {
     // Initialize SDL Subsystems
     if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
-        std::cerr << "SDL could not initialize! SDL_Error: " << SDL_GetError() << std::endl;
+        logMessage(logger_level::Error, "SDL could not initialize! SDL_Error: " + std::string(SDL_GetError()));
         return false;
     }
     std::cout << "SDL3 initialized successfully!" << std::endl;
@@ -18,8 +19,9 @@ bool initializePlatform() {
     // Create a window
     window = SDL_CreateWindow("My SDL3 Window", 800, 600, SDL_WINDOW_OPENGL);
 
+
     if (window == nullptr) {
-        std::cerr << "Window could not be created! SDL_Error:" << SDL_GetError() << std::endl;
+       logMessage(logger_level::Error, "Window could not be created! SDL_Error: " + std::string(SDL_GetError()));
         SDL_Quit();
         return false;
     }
@@ -29,9 +31,11 @@ bool initializePlatform() {
 
     try {
         renderer = std::make_unique<Renderer>(window);
+        renderer->LoadTexture("assets/test.bmp");
 
     } catch (const std::runtime_error& e) {
-        std::cerr << e.what() << std::endl;
+       logMessage(logger_level::Error, e.what());
+        renderer.reset();
         SDL_DestroyWindow(window);
         window = nullptr;
         SDL_Quit();
@@ -43,7 +47,7 @@ bool initializePlatform() {
 
 void renderPlatform() {
     if(renderer == nullptr){
-        std::cerr << "Renderer is not initialized!" << std::endl;
+       logMessage(logger_level::Warning, "Renderer is not initialized!");
         return;
     }
     // Clear the screen with a black color
@@ -53,6 +57,7 @@ void renderPlatform() {
     Bounds rectBounds{300.0f, 200.0f, 200.0f, 200.0f};
     renderer->DrawFilledRect(Color{255, 0, 0, 255}, rectBounds);
 
+    renderer->DrawTexture(Bounds{100.0f, 100.0f, 200.0f, 200.0f});
     // Present the rendered frame on the screen
     renderer->Present();
 }
