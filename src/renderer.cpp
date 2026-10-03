@@ -23,6 +23,7 @@ Renderer::~Renderer() {
 void Renderer::Present() {
     SDL_RenderPresent(renderer);
 }
+
 void Renderer::ClearScreen(const Color& color) {
     SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.alpha);
     SDL_RenderClear(renderer);
