@@ -1,15 +1,15 @@
 #include "renderer.h"
+#include "logger.h"
+#include <iostream>
 #include <stdexcept>
 #include <string>
-#include <iostream>
-#include "logger.h"
 
 
 
-Renderer::Renderer(SDL_Window* window){
-renderer=SDL_CreateRenderer(window, nullptr);
- if (renderer == nullptr) {
-        throw std::runtime_error(std::string("Renderer error: ")+ std::string(SDL_GetError())) ;
+Renderer::Renderer(SDL_Window* window) {
+    renderer = SDL_CreateRenderer(window, nullptr);
+    if (renderer == nullptr) {
+        throw std::runtime_error(std::string("Renderer error: ") + std::string(SDL_GetError()));
     }
  logMessage(logger_level::Info, "Renderer is initialized");
     SDL_SetRenderVSync(renderer, 1);
@@ -22,10 +22,8 @@ if(texture!=nullptr){
  SDL_DestroyRenderer(renderer);
 }
 
-void Renderer::Present(){
-     SDL_RenderPresent(renderer);
-
-
+void Renderer::Present() {
+    SDL_RenderPresent(renderer);
 }
 void Renderer::ClearScreen(const Color& color) {
     SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.alpha);

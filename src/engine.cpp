@@ -1,6 +1,6 @@
-#include "../include/placeholder.h" 
-#include "../include/platform.h"
-#include "../include/input.h"
+#include "placeholder.h" 
+#include "platform.h"
+#include "input.h"
 #include <iostream>
 #include <chrono>
 
@@ -10,6 +10,8 @@ using namespace std;
 void engine() {
 
     bool running = initializePlatform();
+
+    if (running) { initializeInput();}
 
     if (!running) {
         cout << "Error occured while initializing engine";
