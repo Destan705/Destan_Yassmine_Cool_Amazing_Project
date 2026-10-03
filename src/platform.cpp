@@ -12,7 +12,7 @@ bool initializePlatform() {
     // Initialize SDL Subsystems
     if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
         logMessage(logger_level::Error,
-                   "SDL could not initialize! SDL_Error: " + std::string(SDL_GetError()));
+                "SDL could not initialize! SDL_Error: " + std::string(SDL_GetError()));
         return false;
     }
     logMessage(logger_level::Info, "SDL3 initialized successfully!");
@@ -22,7 +22,7 @@ bool initializePlatform() {
 
     if (window == nullptr) {
         logMessage(logger_level::Error,
-                   "Window could not be created! SDL_Error: " + std::string(SDL_GetError()));
+                "Window could not be created! SDL_Error: " + std::string(SDL_GetError()));
         SDL_Quit();
         return false;
     }
