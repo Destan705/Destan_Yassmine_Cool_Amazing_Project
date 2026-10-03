@@ -1,5 +1,5 @@
 {
-  "tests": 28,
+  "tests": 33,
   "name": "AllTests",
   "testsuites": [
     {
@@ -138,37 +138,68 @@
         {
           "name": "CreatesRendererForValidWindow",
           "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
-          "line": 56
+          "line": 62
         },
         {
           "name": "RejectsNullWindow",
           "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
-          "line": 64
+          "line": 70
         },
         {
           "name": "ReleasesRendererWhenItGoesOutOfScope",
           "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
-          "line": 68
+          "line": 74
         },
         {
           "name": "ClearScreenFillsEntireDrawingAreaWithRequestedColor",
           "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
-          "line": 79
+          "line": 85
         },
         {
           "name": "DrawFilledRectUsesRequestedColorPositionAndSize",
           "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
-          "line": 93
+          "line": 99
         },
         {
           "name": "ClearScreenRemovesPreviouslyDrawnContent",
           "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
-          "line": 111
+          "line": 117
         },
         {
           "name": "LaterRectangleOverwritesOverlapAndPreservesOtherPixels",
           "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
-          "line": 127
+          "line": 133
+        }
+      ]
+    },
+    {
+      "name": "TextureTest",
+      "tests": 5,
+      "testsuite": [
+        {
+          "name": "LoadsValidBmpAndDrawsAtRequestedPositionAndSize",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 230
+        },
+        {
+          "name": "MissingFileThrowsRuntimeError",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 259
+        },
+        {
+          "name": "InvalidBmpThrowsRuntimeError",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 269
+        },
+        {
+          "name": "DrawingWithoutTextureLeavesScreenUnchanged",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 290
+        },
+        {
+          "name": "LoadingSecondTextureReplacesFirstTexture",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 302
         }
       ]
     }

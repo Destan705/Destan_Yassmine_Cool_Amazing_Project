@@ -11,7 +11,8 @@ std::unique_ptr<Renderer> renderer = nullptr;
 bool initializePlatform() {
     // Initialize SDL Subsystems
     if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
-        logMessage(logger_level::Error, "SDL could not initialize! SDL_Error: " + std::string(SDL_GetError()));
+        logMessage(logger_level::Error,
+                   "SDL could not initialize! SDL_Error: " + std::string(SDL_GetError()));
         return false;
     }
     logMessage(logger_level::Info, "SDL3 initialized successfully!");
@@ -20,7 +21,8 @@ bool initializePlatform() {
     window = SDL_CreateWindow("My SDL3 Window", 800, 600, SDL_WINDOW_OPENGL);
 
     if (window == nullptr) {
-        logMessage(logger_level::Error, "Window could not be created! SDL_Error: " + std::string(SDL_GetError()));
+        logMessage(logger_level::Error,
+                   "Window could not be created! SDL_Error: " + std::string(SDL_GetError()));
         SDL_Quit();
         return false;
     }
@@ -33,9 +35,9 @@ bool initializePlatform() {
         const char* basePath = SDL_GetBasePath();
 
         if (basePath == nullptr) {
-            logMessage(logger_level::Error, "Could not locate assets! SDL_Error: " + std::string(SDL_GetError()));
+            throw std::runtime_error(std::string("Could not locate assets! SDL_Error: ") +
+                                    SDL_GetError());
         }
-
         const std::string texturePath = std::string(basePath) + "assets/test.bmp";
 
         renderer->LoadTexture(texturePath.c_str());
