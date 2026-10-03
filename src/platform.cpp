@@ -19,9 +19,8 @@ bool initializePlatform() {
     // Create a window
     window = SDL_CreateWindow("My SDL3 Window", 800, 600, SDL_WINDOW_OPENGL);
 
-
     if (window == nullptr) {
-       logMessage(logger_level::Error, "Window could not be created! SDL_Error: " + std::string(SDL_GetError()));
+        logMessage(logger_level::Error, "Window could not be created! SDL_Error: " + std::string(SDL_GetError()));
         SDL_Quit();
         return false;
     }
@@ -34,7 +33,7 @@ bool initializePlatform() {
         renderer->LoadTexture("assets/test.bmp");
 
     } catch (const std::runtime_error& e) {
-       logMessage(logger_level::Error, e.what());
+        logMessage(logger_level::Error, e.what());
         renderer.reset();
         SDL_DestroyWindow(window);
         window = nullptr;
@@ -46,8 +45,8 @@ bool initializePlatform() {
 }
 
 void renderPlatform() {
-    if(renderer == nullptr){
-       logMessage(logger_level::Warning, "Renderer is not initialized!");
+    if (renderer == nullptr) {
+        logMessage(logger_level::Warning, "Renderer is not initialized!");
         return;
     }
     // Clear the screen with a black color
@@ -62,16 +61,15 @@ void renderPlatform() {
     renderer->Present();
 }
 
-void shutdownPlatform(){
-    //Destroy the renderer first
+void shutdownPlatform() {
+    // Destroy the renderer first
     renderer.reset();
-    //Destroy the window
-    if(window != nullptr){
-    SDL_DestroyWindow(window);
-    window = nullptr;
+    // Destroy the window
+    if (window != nullptr) {
+        SDL_DestroyWindow(window);
+        window = nullptr;
     }
-    //Quit SDL subsystems
+    // Quit SDL subsystems
     std::cout << "Engine is shutdown";
     SDL_Quit();
-
 }

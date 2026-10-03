@@ -1,0 +1,176 @@
+{
+  "tests": 28,
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "LoggerTest",
+      "tests": 6,
+      "testsuite": [
+        {
+          "name": "InfoUsesCorrectLabelAndStandardOutput",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_logger.cpp",
+          "line": 30
+        },
+        {
+          "name": "WarningUsesCorrectLabelAndStandardOutput",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_logger.cpp",
+          "line": 37
+        },
+        {
+          "name": "ErrorUsesCorrectLabelAndStandardError",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_logger.cpp",
+          "line": 44
+        },
+        {
+          "name": "EmptyMessageStillIncludesLabelAndNewline",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_logger.cpp",
+          "line": 51
+        },
+        {
+          "name": "ConsecutiveMessagesRemainSeparateAndUseCorrectStreams",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_logger.cpp",
+          "line": 58
+        },
+        {
+          "name": "MessagePunctuationAndWhitespaceArePreserved",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_logger.cpp",
+          "line": 70
+        }
+      ]
+    },
+    {
+      "name": "EngineTest",
+      "tests": 6,
+      "testsuite": [
+        {
+          "name": "WhenStartupFailsEngineReturnsAndCleansUp",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_engine.cpp",
+          "line": 35
+        },
+        {
+          "name": "WhenQuitEventOccursEngineStopsAndCleansUp",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_engine.cpp",
+          "line": 42
+        },
+        {
+          "name": "WhenWindowCreationFailsEngineReturnsAndCleansUp",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_engine.cpp",
+          "line": 52
+        },
+        {
+          "name": "WhenRendererCreationFailsEngineReturnsAndCleansUp",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_engine.cpp",
+          "line": 59
+        },
+        {
+          "name": "WhenWindowCloseIsRequestedEngineStopsAndCleansUp",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_engine.cpp",
+          "line": 68
+        },
+        {
+          "name": "EngineCanRunAgainAfterQuitting",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_engine.cpp",
+          "line": 78
+        }
+      ]
+    },
+    {
+      "name": "InputTest",
+      "tests": 1,
+      "testsuite": [
+        {
+          "name": "PressedKeyIsReportedByEngineKey",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_input.cpp",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "name": "PlatformTest",
+      "tests": 8,
+      "testsuite": [
+        {
+          "name": "InitializesVideoAudioWindowAndRenderer",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_platform.cpp",
+          "line": 31
+        },
+        {
+          "name": "ShutdownIsSafeBeforeInitialization",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_platform.cpp",
+          "line": 48
+        },
+        {
+          "name": "ShutdownIsSafeWhenCalledTwice",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_platform.cpp",
+          "line": 53
+        },
+        {
+          "name": "CanInitializeAgainAfterShutdown",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_platform.cpp",
+          "line": 60
+        },
+        {
+          "name": "RenderWithoutInitializationReturnsSafely",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_platform.cpp",
+          "line": 71
+        },
+        {
+          "name": "VideoInitializationFailureReturnsFalseAndAllowsShutdown",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_platform.cpp",
+          "line": 76
+        },
+        {
+          "name": "WindowCreationFailureCleansUpInitializedSubsystems",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_platform.cpp",
+          "line": 84
+        },
+        {
+          "name": "RendererCreationFailureCleansUpWindowAndSubsystems",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_platform.cpp",
+          "line": 94
+        }
+      ]
+    },
+    {
+      "name": "RendererTest",
+      "tests": 7,
+      "testsuite": [
+        {
+          "name": "CreatesRendererForValidWindow",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 56
+        },
+        {
+          "name": "RejectsNullWindow",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 64
+        },
+        {
+          "name": "ReleasesRendererWhenItGoesOutOfScope",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 68
+        },
+        {
+          "name": "ClearScreenFillsEntireDrawingAreaWithRequestedColor",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 79
+        },
+        {
+          "name": "DrawFilledRectUsesRequestedColorPositionAndSize",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 93
+        },
+        {
+          "name": "ClearScreenRemovesPreviouslyDrawnContent",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 111
+        },
+        {
+          "name": "LaterRectangleOverwritesOverlapAndPreservesOtherPixels",
+          "file": "C:\\Users\\senya\\Documents\\Destan_Yassmine_Cool_Amazing_Project\\tests\\test_renderer.cpp",
+          "line": 127
+        }
+      ]
+    }
+  ]
+}
