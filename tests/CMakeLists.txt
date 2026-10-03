@@ -12,6 +12,13 @@ if(WIN32)
                 $<TARGET_FILE_DIR:engine_tests>
     )
 endif()
+add_custom_command(
+    TARGET engine_tests POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${PROJECT_SOURCE_DIR}/assets"
+            "$<TARGET_FILE_DIR:engine_tests>/assets"
+    VERBATIM
+)
 
 include(GoogleTest)
 gtest_discover_tests(engine_tests DISCOVERY_MODE PRE_TEST WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}" PROPERTIES TIMEOUT 30)

@@ -1,5 +1,6 @@
 #include "placeholder.h" 
 #include "platform.h"
+#include "logger.h"
 #include "input.h"
 #include <iostream>
 #include <chrono>
@@ -14,7 +15,7 @@ void engine() {
     if (running) { initializeInput();}
 
     if (!running) {
-        cout << "Error occured while initializing engine";
+        logMessage(logger_level::Error, "Error occured while initializing engine");
     }
 
 

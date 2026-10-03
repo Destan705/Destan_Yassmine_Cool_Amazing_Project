@@ -14,7 +14,7 @@ bool initializePlatform() {
         logMessage(logger_level::Error, "SDL could not initialize! SDL_Error: " + std::string(SDL_GetError()));
         return false;
     }
-    std::cout << "SDL3 initialized successfully!" << std::endl;
+    logMessage(logger_level::Info, "SDL3 initialized successfully!");
 
     // Create a window
     window = SDL_CreateWindow("My SDL3 Window", 800, 600, SDL_WINDOW_OPENGL);
@@ -24,13 +24,21 @@ bool initializePlatform() {
         SDL_Quit();
         return false;
     }
-    std::cout << "Window created successfully!" << std::endl;
+    logMessage(logger_level::Info, "Window created successfully!");
 
     // Open Renderer
 
     try {
         renderer = std::make_unique<Renderer>(window);
-        renderer->LoadTexture("assets/test.bmp");
+        const char* basePath = SDL_GetBasePath();
+
+        if (basePath == nullptr) {
+            logMessage(logger_level::Error, "Could not locate assets! SDL_Error: " + std::string(SDL_GetError()));
+        }
+
+        const std::string texturePath = std::string(basePath) + "assets/test.bmp";
+
+        renderer->LoadTexture(texturePath.c_str());
 
     } catch (const std::runtime_error& e) {
         logMessage(logger_level::Error, e.what());
@@ -70,6 +78,6 @@ void shutdownPlatform() {
         window = nullptr;
     }
     // Quit SDL subsystems
-    std::cout << "Engine is shutdown";
+    logMessage(logger_level::Info, "Engine is shutting down");
     SDL_Quit();
 }
