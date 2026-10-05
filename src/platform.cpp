@@ -1,9 +1,11 @@
 #include "logger.h"
 #include "renderer.h"
+#include "render_api.h"
 #include <SDL3/SDL.h>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+#include <array>
 
 SDL_Window* window = nullptr;
 std::unique_ptr<Renderer> renderer = nullptr;
@@ -54,7 +56,8 @@ bool initializePlatform() {
     return true;
 }
 
-void renderPlatform() {
+
+void beginFrame() {
     if (renderer == nullptr) {
         logMessage(logger_level::Warning, "Renderer is not initialized!");
         return;
@@ -62,11 +65,18 @@ void renderPlatform() {
     // Clear the screen with a black color
     renderer->ClearScreen(Color{0, 0, 0, 255});
 
-    // Draw a red rectangle in the center of the screen
-    Bounds rectBounds{300.0f, 200.0f, 200.0f, 200.0f};
-    renderer->DrawFilledRect(Color{255, 0, 0, 255}, rectBounds);
+}
 
+void drawFilledRect(Color rectColor, Bounds rectBounds){
+    // Draw a rectangle in the center of the screen
+    renderer->DrawFilledRect(rectColor, rectBounds);
+}
+
+void drawTexture(){
     renderer->DrawTexture(Bounds{100.0f, 100.0f, 200.0f, 200.0f});
+}
+
+void presentFrame(){
     // Present the rendered frame on the screen
     renderer->Present();
 }

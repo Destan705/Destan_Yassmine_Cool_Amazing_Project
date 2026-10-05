@@ -1,4 +1,4 @@
-add_executable(engine_tests test_renderer.cpp test_platform.cpp ../src/renderer.cpp ../src/platform.cpp test_input.cpp test_engine.cpp test_logger.cpp ../src/input.cpp ../src/engine.cpp ../src/placeholder.cpp ../src/logger.cpp)
+add_executable(engine_tests test_renderer.cpp test_platform.cpp ../src/renderer.cpp ../src/platform.cpp test_input.cpp test_engine.cpp test_logger.cpp ../src/input.cpp ../src/engine.cpp ../src/game.cpp ../src/logger.cpp)
 target_link_libraries(engine_tests PRIVATE GTest::gtest_main SDL3::SDL3)
 target_include_directories(engine_tests PRIVATE ${PROJECT_SOURCE_DIR}/include)
 

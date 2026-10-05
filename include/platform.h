@@ -1,4 +1,4 @@
-void renderPlatform();
+#include <array>
 
 bool initializePlatform();
 

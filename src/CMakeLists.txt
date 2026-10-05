@@ -1,4 +1,4 @@
-add_executable(game_engine main.cpp engine.cpp placeholder.cpp input.cpp renderer.cpp platform.cpp logger.cpp)
+add_executable(game_engine main.cpp engine.cpp game.cpp input.cpp renderer.cpp platform.cpp logger.cpp)
 target_link_libraries(game_engine PRIVATE SDL3::SDL3)
 if(WIN32)
     add_custom_command(
