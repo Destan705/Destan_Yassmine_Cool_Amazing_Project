@@ -6,8 +6,10 @@
 #include <iostream>
 
 namespace {
-std::array<float, 2> catPosition = {100.0f, 250.0f};
-std::array<float, 2> chefPosition = {600.0f, 250.0f};
+constexpr std::array<float, 2> catStartPosition = {100.0f, 250.0f};
+constexpr std::array<float, 2> chefStartPosition = {600.0f, 250.0f};
+std::array<float, 2> catPosition = catStartPosition;
+std::array<float, 2> chefPosition = chefStartPosition;
 
 constexpr float objectSize = 100.0f;
 constexpr float movementSpeed = 200.0f;
@@ -33,6 +35,10 @@ void updatePosition(std::array<float, 2>& position, float delta_time, Key left, 
         std::cout << objectName << " down\n";
     }
 }
+}
+void initializeGame() {
+    catPosition = catStartPosition;
+    chefPosition = chefStartPosition;
 }
 
 void updateGame(float delta_time) {

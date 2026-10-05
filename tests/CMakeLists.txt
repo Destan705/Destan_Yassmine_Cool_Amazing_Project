@@ -2,6 +2,13 @@ add_executable(engine_tests test_renderer.cpp test_platform.cpp ../src/renderer.
 target_link_libraries(engine_tests PRIVATE GTest::gtest_main SDL3::SDL3)
 target_include_directories(engine_tests PRIVATE ${PROJECT_SOURCE_DIR}/include)
 
+
+# Test game behavior without SDL by supplying fake input and drawing functions.
+add_executable(game_tests test_game.cpp ../src/game.cpp)
+target_link_libraries(game_tests PRIVATE GTest::gtest_main)
+target_include_directories(game_tests PRIVATE ${PROJECT_SOURCE_DIR}/include)
+
+
 # Windows needs SDL3.dll next to the test executable, just like the game engine.
 
 if(WIN32)
