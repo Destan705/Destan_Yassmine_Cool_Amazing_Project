@@ -9,6 +9,7 @@
 
 SDL_Window* window = nullptr;
 std::unique_ptr<Renderer> renderer = nullptr;
+textureHandle currentTexture = 0;
 
 bool initializePlatform() {
     // Initialize SDL Subsystems
@@ -42,7 +43,7 @@ bool initializePlatform() {
         }
         const std::string texturePath = std::string(basePath) + "assets/test.bmp";
 
-        renderer->LoadTexture(texturePath.c_str());
+        currentTexture =renderer->LoadTexture(texturePath.c_str());
 
     } catch (const std::runtime_error& e) {
         logMessage(logger_level::Error, e.what());
@@ -73,7 +74,7 @@ void drawFilledRect(Color rectColor, Bounds rectBounds){
 }
 
 void drawTexture(){
-    renderer->DrawTexture(Bounds{100.0f, 100.0f, 200.0f, 200.0f});
+    renderer->DrawTexture(currentTexture, Bounds{100.0f, 100.0f, 200.0f, 200.0f});
 }
 
 void presentFrame(){
