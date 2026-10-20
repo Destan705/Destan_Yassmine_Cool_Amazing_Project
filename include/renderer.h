@@ -12,8 +12,8 @@ class Renderer{
     ~Renderer();// destructor
     Renderer(const Renderer&) = delete;             // sign #1: no making a new box as a copy
     Renderer& operator=(const Renderer&) = delete;  // sign #2: no turning an old box into a copy
-    std::vector <SDL_Texture*> textures; // the array of textures that the renderer can use to draw
-    bool hasWarned = false; // flag to track if the warning has been logged
+  
+   
   
     // Fills the whole screen with the given color.
     // Call once at the start of every frame, before drawing.
@@ -37,5 +37,6 @@ class Renderer{
 
     private:
     SDL_Renderer* renderer=nullptr;
-    SDL_Texture* texture=nullptr;
+    bool hasWarned = false; // flag to track if the warning has been logged
+      std::vector <SDL_Texture*> textures; // the array of textures that the renderer can use to draw
 };
