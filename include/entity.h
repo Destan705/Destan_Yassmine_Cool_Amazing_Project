@@ -44,6 +44,10 @@ class Entity {
         }
 
         template <typename T, typename... Args>
+        // Creates a component of type T using the supplied constructor arguments
+        // Throws std::logic_error if this Entity already has a component of that type
+        // Sets its owner to this Entity and transfers ownership into the components vector
+        // Returns a reference for access; the Entity owns and automatically destroys it
         T& addComponent(Args&&... args){
             static_assert(std::is_base_of_v<Component, T>, "T must derive from Component");
             if (getComponent<T>() != nullptr) {
