@@ -6,6 +6,8 @@
 #pragma once 
 #include <cstdint>
 
+using textureHandle = unsigned int;
+
 struct Color {
 std::uint8_t red=255;
 std::uint8_t green=255;

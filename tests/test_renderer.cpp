@@ -231,13 +231,16 @@ TEST_F(TextureTest, LoadsValidBmpAndDrawsAtRequestedPositionAndSize) {
     const Color background{0, 0, 0, 255};
     const Color textureColor{255, 0, 0, 255};
     const std::string path = FilePath("red.bmp");
+
     ASSERT_NO_FATAL_FAILURE(CreateBmp(path, textureColor));
 
+    
     Renderer renderer(window);
-    ASSERT_NO_THROW(renderer.LoadTexture(path.c_str()));
+    textureHandle currentTexture=0;
+    ASSERT_NO_THROW(currentTexture=renderer.LoadTexture(path.c_str()));
 
     renderer.ClearScreen(background);
-    renderer.DrawTexture(Bounds{7.0f, 13.0f, 19.0f, 11.0f});
+    renderer.DrawTexture(currentTexture, Bounds{7.0f, 13.0f, 19.0f, 11.0f});
 
     auto pixels = ReadPixels();
     ASSERT_NE(pixels, nullptr) << SDL_GetError();
@@ -293,12 +296,13 @@ TEST_F(TextureTest, DrawingWithoutTextureLeavesScreenUnchanged) {
     renderer.ClearScreen(background);
 
     EXPECT_NO_THROW(
-        renderer.DrawTexture(Bounds{7.0f, 13.0f, 19.0f, 11.0f})
+        renderer.DrawTexture(0,Bounds{7.0f, 13.0f, 19.0f, 11.0f})
     );
 
     ExpectSolidScreen(background);
 }
 
+/*
 TEST_F(TextureTest, LoadingSecondTextureReplacesFirstTexture) {
     const Color red{255, 0, 0, 255};
     const Color blue{0, 0, 255, 255};
@@ -320,6 +324,6 @@ TEST_F(TextureTest, LoadingSecondTextureReplacesFirstTexture) {
     renderer.DrawTexture(Bounds{0.0f, 0.0f, 64.0f, 64.0f});
     ExpectSolidScreen(blue);
 }
-
+*/
 
 } // namespace
