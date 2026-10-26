@@ -1,6 +1,7 @@
 #include "transform.h"
 #include "sprite.h"
 #include "entity.h"
+#include "renderer.h"
 
 Sprite::Sprite(textureHandle handle){
     currentTexture = handle;
@@ -18,5 +19,5 @@ void Sprite::render(Renderer& renderer){
     }
 
     Bounds bounds{transform->x, transform->y, transform->width, transform->height};
-
+    renderer.DrawTexture(currentTexture, bounds);
 }
