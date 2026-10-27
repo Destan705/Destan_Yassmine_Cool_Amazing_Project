@@ -1,5 +1,5 @@
 {
-  "tests": 39,
+  "tests": 41,
   "name": "AllTests",
   "testsuites": [
     {
@@ -200,7 +200,7 @@
     },
     {
       "name": "EntityTest",
-      "tests": 4,
+      "tests": 6,
       "testsuite": [
         {
           "name": "AddComponentReturnsTheComponent",
@@ -221,6 +221,16 @@
           "name": "UpdateReachesComponents",
           "file": "\/Users\/destancakar\/Desktop\/yassmine_destan_cool_awsome_project\/tests\/test_component_entity.cpp",
           "line": 38
+        },
+        {
+          "name": "GetIdReturnsConstructorId",
+          "file": "\/Users\/destancakar\/Desktop\/yassmine_destan_cool_awsome_project\/tests\/test_component_entity.cpp",
+          "line": 46
+        },
+        {
+          "name": "AddedComponentKnowsItsOwner",
+          "file": "\/Users\/destancakar\/Desktop\/yassmine_destan_cool_awsome_project\/tests\/test_component_entity.cpp",
+          "line": 53
         }
       ]
     },
@@ -236,12 +246,12 @@
         {
           "name": "DispatchCallsListenersInOrder",
           "file": "\/Users\/destancakar\/Desktop\/yassmine_destan_cool_awsome_project\/tests\/test_event_dispatcher.cpp",
-          "line": 16
+          "line": 12
         },
         {
           "name": "UnsubscribedListenerIsNotCalled",
           "file": "\/Users\/destancakar\/Desktop\/yassmine_destan_cool_awsome_project\/tests\/test_event_dispatcher.cpp",
-          "line": 25
+          "line": 30
         }
       ]
     }
