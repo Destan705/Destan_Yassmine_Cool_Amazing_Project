@@ -24,7 +24,7 @@ TEST(EntityTest, AddingDuplicateComponentThrows) {
 TEST(EntityTest, GetMissingComponentReturnsNullptr) {
     Entity entity(1);
     EXPECT_EQ(nullptr, entity.getComponent<FakeComponent>());
-    
+
 }
 
 class UpdateTracker : public Component {
@@ -41,4 +41,20 @@ TEST(EntityTest, UpdateReachesComponents) {
     UpdateTracker& tracker = entity.addComponent<UpdateTracker>();
     entity.update(0.1f);
     EXPECT_TRUE(tracker.updated);
+}
+
+TEST(EntityTest, GetIdReturnsConstructorId) {
+
+    Entity entity(42);
+
+    EXPECT_EQ(entity.getId(), 42);
+}
+
+TEST(EntityTest, AddedComponentKnowsItsOwner) {
+
+    Entity entity(1);
+
+    FakeComponent& component = entity.addComponent<FakeComponent>();
+    
+    EXPECT_EQ(component.getOwner(), &entity);
 }
