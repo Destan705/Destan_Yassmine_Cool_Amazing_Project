@@ -1,5 +1,5 @@
 {
-  "tests": 36,
+  "tests": 39,
   "name": "AllTests",
   "testsuites": [
     {
@@ -221,6 +221,27 @@
           "name": "UpdateReachesComponents",
           "file": "\/Users\/destancakar\/Desktop\/yassmine_destan_cool_awsome_project\/tests\/test_component_entity.cpp",
           "line": 38
+        }
+      ]
+    },
+    {
+      "name": "EventDispatcherTest",
+      "tests": 3,
+      "testsuite": [
+        {
+          "name": "SubscribeReturnsDifferentIds",
+          "file": "\/Users\/destancakar\/Desktop\/yassmine_destan_cool_awsome_project\/tests\/test_event_dispatcher.cpp",
+          "line": 5
+        },
+        {
+          "name": "DispatchCallsListenersInOrder",
+          "file": "\/Users\/destancakar\/Desktop\/yassmine_destan_cool_awsome_project\/tests\/test_event_dispatcher.cpp",
+          "line": 16
+        },
+        {
+          "name": "UnsubscribedListenerIsNotCalled",
+          "file": "\/Users\/destancakar\/Desktop\/yassmine_destan_cool_awsome_project\/tests\/test_event_dispatcher.cpp",
+          "line": 25
         }
       ]
     }
