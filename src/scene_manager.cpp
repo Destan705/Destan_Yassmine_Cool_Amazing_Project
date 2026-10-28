@@ -30,7 +30,7 @@ void SceneManager::update(float dt){
     }
 }
 //gives back the current scene
-Scene& SceneManager::activeScene(){
+Scene& SceneManager::getActiveScene(){
     if(currentScene==nullptr){
     throw std::runtime_error("no active scene");
     }

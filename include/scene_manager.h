@@ -6,12 +6,16 @@
 class SceneManager{
 
 public:
-explicit SceneManager(EventDispatcher& dispatcher);
-void setActiveScene(std::unique_ptr<Scene> scene);
-Scene& activeScene();
-void update(float dt);
+    explicit SceneManager(EventDispatcher& dispatcher);
+
+    void setActiveScene(std::unique_ptr<Scene> scene);
+
+    Scene& getActiveScene();
+
+    void update(float dt);
 
 private:
-std::unique_ptr<Scene> currentScene;
-EventDispatcher& eventDispatcher;
+    std::unique_ptr<Scene> currentScene;
+
+    EventDispatcher& eventDispatcher;
 };

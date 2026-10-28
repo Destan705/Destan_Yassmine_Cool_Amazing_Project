@@ -1,5 +1,5 @@
-void updateEngineState(float delta_time) ;
+#include "scene_manager.h"
 
-void renderEngineFrame();
+void renderEngineFrame(SceneManager& sceneManager);
 
 void engine();

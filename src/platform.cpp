@@ -94,3 +94,15 @@ void shutdownPlatform() {
     logMessage(logger_level::Info, "Engine is shutting down");
     SDL_Quit();
 }
+
+Renderer& getRenderer() {
+    if (renderer == nullptr) {
+        throw std::runtime_error("Renderer is not initialized");
+    }
+
+    return *renderer;
+}
+
+textureHandle getDefaultTexture() {
+    return currentTexture;
+}

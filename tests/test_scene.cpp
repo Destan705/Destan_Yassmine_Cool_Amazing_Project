@@ -147,7 +147,7 @@ TEST(SceneManagerTest, ThrowsWhenNoActiveSceneExists) {
     EventDispatcher dispatcher;
     SceneManager manager(dispatcher);
 
-    EXPECT_THROW(manager.activeScene(), std::runtime_error);
+    EXPECT_THROW(manager.getActiveScene(), std::runtime_error);
 }
 
 TEST(SceneManagerTest, StoresActiveScene) {
@@ -156,7 +156,7 @@ TEST(SceneManagerTest, StoresActiveScene) {
 
     manager.setActiveScene(std::make_unique<Scene>("Level1"));
 
-    EXPECT_EQ(manager.activeScene().getSceneName(), "Level1");
+    EXPECT_EQ(manager.getActiveScene().getSceneName(), "Level1");
 }
 
 TEST(SceneManagerTest, ReplacesActiveScene) {
@@ -166,7 +166,7 @@ TEST(SceneManagerTest, ReplacesActiveScene) {
     manager.setActiveScene(std::make_unique<Scene>("Level1"));
     manager.setActiveScene(std::make_unique<Scene>("Level2"));
 
-    EXPECT_EQ(manager.activeScene().getSceneName(), "Level2");
+    EXPECT_EQ(manager.getActiveScene().getSceneName(), "Level2");
 }
 
 TEST(SceneManagerTest, DestroysPreviousSceneOnReplacement) {
@@ -236,7 +236,7 @@ TEST(SceneManagerTest, NullSceneDoesNotReplaceExistingScene) {
         std::invalid_argument
     );
 
-    EXPECT_EQ(manager.activeScene().getSceneName(), "Level1");
+    EXPECT_EQ(manager.getActiveScene().getSceneName(), "Level1");
 }
 
 TEST(SceneManagerTest, FirstSceneDispatchesCorrectEvent) {
@@ -318,7 +318,7 @@ TEST(SceneManagerTest, NewSceneActiveDuringEvent) {
     std::string observedName;
 
     dispatcher.subscribe([&](const SceneChangedEvent&) {
-        observedName = manager.activeScene().getSceneName();
+        observedName = manager.getActiveScene().getSceneName();
     });
 
     manager.setActiveScene(std::make_unique<Scene>("Level2"));
