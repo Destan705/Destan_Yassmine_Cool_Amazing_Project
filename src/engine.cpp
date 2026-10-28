@@ -1,0 +1,59 @@
+#include "platform.h"
+#include "render_api.h"
+#include "logger.h"
+#include "input.h"
+#include "game.h"
+#include <iostream>
+#include <chrono>
+#include <array>
+
+
+using namespace std;
+
+
+void updateEngineState(float delta_time) {
+    updateGame(delta_time);
+}
+
+void renderEngineFrame() {
+    beginFrame();
+    renderGame();
+    presentFrame();
+}
+
+
+void engine() {
+
+    bool running = initializePlatform();
+
+    if (running) { initializeInput();}
+
+    if (!running) {
+        logMessage(logger_level::Error, "Error occured while initializing engine");
+    }
+
+
+    float delta_time = 0.0f;
+    auto prev_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+
+    while (running) {
+        auto current_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+        //  Process Input
+        running = processPlatformEvents();
+        
+        if (!running) {break;}
+
+        //  Update Engine State
+        delta_time = (current_time - prev_time)/1000.0f;
+
+        updateEngineState(delta_time);
+
+        //  Render Engine Frame
+        renderEngineFrame();
+        prev_time = current_time;
+    }
+
+    // Shutdown system
+    shutdownPlatform();
+
+}

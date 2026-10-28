@@ -1,5 +1,31 @@
-add_executable(engine_tests test_sanity.cpp)
-target_link_libraries(engine_tests PRIVATE GTest::gtest_main)
+add_executable(engine_tests test_renderer.cpp test_platform.cpp ../src/renderer.cpp ../src/platform.cpp test_input.cpp test_engine.cpp test_logger.cpp ../src/input.cpp ../src/engine.cpp ../src/game.cpp ../src/logger.cpp ../src/component.cpp ../src/entity.cpp test_component_entity.cpp ../src/component.cpp ../src/entity.cpp test_event_dispatcher.cpp ../src/event_dispatcher.cpp)
+target_link_libraries(engine_tests PRIVATE GTest::gtest_main SDL3::SDL3)
+target_include_directories(engine_tests PRIVATE ${PROJECT_SOURCE_DIR}/include)
+
+
+# Test game behavior without SDL by supplying fake input and drawing functions.
+add_executable(game_tests test_game.cpp ../src/game.cpp)
+target_link_libraries(game_tests PRIVATE GTest::gtest_main)
+target_include_directories(game_tests PRIVATE ${PROJECT_SOURCE_DIR}/include)
+
+
+# Windows needs SDL3.dll next to the test executable, just like the game engine.
+
+if(WIN32)
+    add_custom_command(
+        TARGET engine_tests POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                $<TARGET_FILE:SDL3::SDL3>
+                $<TARGET_FILE_DIR:engine_tests>
+    )
+endif()
+add_custom_command(
+    TARGET engine_tests POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${PROJECT_SOURCE_DIR}/assets"
+            "$<TARGET_FILE_DIR:engine_tests>/assets"
+    VERBATIM
+)
 
 include(GoogleTest)
-gtest_discover_tests(engine_tests)
+gtest_discover_tests(engine_tests DISCOVERY_MODE PRE_TEST WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}" PROPERTIES TIMEOUT 30)
