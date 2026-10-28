@@ -18,13 +18,13 @@ return  *entities.back();
 
 void Scene::update(float dt){
     for(auto& entity : entities){
-    entity->update(dt);
+        entity->update(dt);
     }
 }
 
 void Scene::render(Renderer& renderer){
-     for(auto& entity : entities){
-    entity->render(renderer);
+    for(auto& entity : entities){
+        entity->render(renderer);
     }
 }
 

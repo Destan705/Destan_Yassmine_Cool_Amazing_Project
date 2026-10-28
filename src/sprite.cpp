@@ -9,11 +9,12 @@ Sprite::Sprite(textureHandle handle){
 
 void Sprite::render(Renderer& renderer){
 
-   Entity* owner= getOwner();
-   if(owner==nullptr){
-    return;
-   }
-   Transform* transform = owner->getComponent<Transform>();
+    Entity* owner= getOwner();
+    if(owner==nullptr){
+        return;
+    }
+    
+    Transform* transform = owner->getComponent<Transform>();
     if(transform==nullptr){
         return;
     }
