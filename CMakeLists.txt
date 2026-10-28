@@ -1,5 +1,16 @@
 cmake_minimum_required(VERSION 3.20)
 project(game_engine VERSION 0.0.0 LANGUAGES CXX)
+
+set(ENGINE_INCLUDE_DIRS
+    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/include/core
+    ${PROJECT_SOURCE_DIR}/include/platform
+    ${PROJECT_SOURCE_DIR}/include/rendering
+    ${PROJECT_SOURCE_DIR}/include/ecs
+    ${PROJECT_SOURCE_DIR}/include/scene
+    ${PROJECT_SOURCE_DIR}/include/events
+)
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include(FetchContent)
