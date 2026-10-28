@@ -1,4 +1,6 @@
 #include "renderer.h"
+#include "scene.h"
+
 
 #include <gtest/gtest.h>
 #include <memory>
@@ -302,10 +304,29 @@ TEST_F(TextureTest, DrawingWithoutTextureLeavesScreenUnchanged) {
     ExpectSolidScreen(background);
 }
 
-/*
-TEST_F(TextureTest, LoadingSecondTextureReplacesFirstTexture) {
+
+TEST_F(TextureTest, LoadedTexturesReceiveDistinctHandles) {
+    const std::string redPath = FilePath("red.bmp");
+    const std::string bluePath = FilePath("blue.bmp");
+
+    ASSERT_NO_FATAL_FAILURE(CreateBmp(redPath, Color{255, 0, 0, 255}));
+    ASSERT_NO_FATAL_FAILURE(CreateBmp(bluePath, Color{0, 0, 255, 255}));
+
+    Renderer renderer(window);
+
+    const textureHandle redHandle = renderer.LoadTexture(redPath.c_str());
+    const textureHandle blueHandle = renderer.LoadTexture(bluePath.c_str());
+
+    EXPECT_NE(redHandle, 0u);
+    EXPECT_NE(blueHandle, 0u);
+    EXPECT_NE(redHandle, blueHandle);
+}
+
+TEST_F(TextureTest, DrawsTwoDifferentTexturesInSameFrame) {
+    const Color background{0, 0, 0, 255};
     const Color red{255, 0, 0, 255};
     const Color blue{0, 0, 255, 255};
+
     const std::string redPath = FilePath("red.bmp");
     const std::string bluePath = FilePath("blue.bmp");
 
@@ -314,16 +335,81 @@ TEST_F(TextureTest, LoadingSecondTextureReplacesFirstTexture) {
 
     Renderer renderer(window);
 
-    ASSERT_NO_THROW(renderer.LoadTexture(redPath.c_str()));
-    renderer.ClearScreen(Color{0, 0, 0, 255});
-    renderer.DrawTexture(Bounds{0.0f, 0.0f, 64.0f, 64.0f});
-    ASSERT_NO_FATAL_FAILURE(ExpectSolidScreen(red));
+    const textureHandle redHandle = renderer.LoadTexture(redPath.c_str());
+    const textureHandle blueHandle = renderer.LoadTexture(bluePath.c_str());
 
-    ASSERT_NO_THROW(renderer.LoadTexture(bluePath.c_str()));
+    renderer.ClearScreen(background);
+
+    renderer.DrawTexture(redHandle, Bounds{5, 10, 20, 20});
+    renderer.DrawTexture(blueHandle, Bounds{35, 10, 20, 20});
+
+    auto pixels = ReadPixels();
+    ASSERT_NE(pixels, nullptr) << SDL_GetError();
+
+    ExpectPixel(pixels.get(), 10, 15, red);
+    ExpectPixel(pixels.get(), 40, 15, blue);
+    ExpectPixel(pixels.get(), 30, 15, background);
+}
+
+TEST_F(TextureTest, InvalidHandleDoesNotChangeScreen) {
+    Renderer renderer(window);
+
+    const Color background{25, 50, 75, 255};
+    renderer.ClearScreen(background);
+
+    EXPECT_NO_THROW(
+        renderer.DrawTexture(9999u, Bounds{0, 0, 64, 64})
+    );
+
+    ExpectSolidScreen(background);
+}
+
+TEST_F(TextureTest, LoadingSecondTexturePreservesFirstHandle) {
+    const Color red{255, 0, 0, 255};
+    const Color blue{0, 0, 255, 255};
+
+    const std::string redPath = FilePath("red.bmp");
+    const std::string bluePath = FilePath("blue.bmp");
+
+    ASSERT_NO_FATAL_FAILURE(CreateBmp(redPath, red));
+    ASSERT_NO_FATAL_FAILURE(CreateBmp(bluePath, blue));
+
+    Renderer renderer(window);
+
+    const textureHandle redHandle = renderer.LoadTexture(redPath.c_str());
+    const textureHandle blueHandle = renderer.LoadTexture(bluePath.c_str());
+
     renderer.ClearScreen(Color{0, 0, 0, 255});
-    renderer.DrawTexture(Bounds{0.0f, 0.0f, 64.0f, 64.0f});
+    renderer.DrawTexture(redHandle, Bounds{0, 0, 64, 64});
+
+    ExpectSolidScreen(red);
+
+    renderer.ClearScreen(Color{0, 0, 0, 255});
+    renderer.DrawTexture(blueHandle, Bounds{0, 0, 64, 64});
+
     ExpectSolidScreen(blue);
 }
-*/
+
+TEST_F(TextureTest, DestroysRendererWithMultipleLoadedTextures) {
+    const std::string redPath = FilePath("red.bmp");
+    const std::string bluePath = FilePath("blue.bmp");
+
+    ASSERT_NO_FATAL_FAILURE(CreateBmp(redPath, Color{255, 0, 0, 255}));
+    ASSERT_NO_FATAL_FAILURE(CreateBmp(bluePath, Color{0, 0, 255, 255}));
+
+    {
+        Renderer renderer(window);
+
+        renderer.LoadTexture(redPath.c_str());
+        renderer.LoadTexture(bluePath.c_str());
+
+        ASSERT_NE(SDL_GetRenderer(window), nullptr);
+    }
+
+    EXPECT_EQ(SDL_GetRenderer(window), nullptr);
+
+    // A new renderer should still be creatable for the same window.
+    EXPECT_NO_THROW(Renderer replacement(window));
+}
 
 } // namespace
