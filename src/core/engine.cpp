@@ -48,10 +48,21 @@ void engine() {
         textureHandle handle = loadPlatformTexture("assets/test.bmp");
         sceneEntity.addComponent<Sprite>(handle);
 
+        Entity& sceneEntity2 = sceneManager.getActiveScene().createEntity();
+        Transform& transformComponent2 = sceneEntity2.addComponent<Transform>();
+        textureHandle handle2 = loadPlatformTexture("assets/test.bmp");
+        sceneEntity2.addComponent<Sprite>(handle2);
+
+
         transformComponent.x = 100.0f;
         transformComponent.y = 150.0f;
         transformComponent.width = 50.0f;
         transformComponent.height = 50.0f;
+
+        transformComponent2.x = 200.0f;
+        transformComponent2.y = 300.0f;
+        transformComponent2.width = 50.0f;
+        transformComponent2.height = 50.0f;
 
         while (running) {
             auto current_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
