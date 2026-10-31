@@ -1,0 +1,6 @@
+/* Subtle polish only. Keep content legible in both light and dark modes. */
+.md-typeset h1 { letter-spacing: -0.025em; }
+.md-typeset h2 { margin-top: 1.6em; padding-bottom: .2em; border-bottom: 1px solid var(--md-default-fg-color--lightest); }
+.md-typeset table:not([class]) { border-radius: .4rem; overflow: hidden; }
+.md-typeset code { font-size: .9em; }
+.md-sidebar { scrollbar-width: thin; }

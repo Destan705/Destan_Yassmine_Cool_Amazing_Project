@@ -1,0 +1,90 @@
+# Optional searchable site. Markdown remains readable in GitHub without this.
+site_name: Game Engine — Code Handbook
+site_description: A practical guide to every part of our C++ game engine
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  variant: modern
+  language: en
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: lucide/moon
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: lucide/sun
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - Start Here: index.md
+  - Architecture:
+      - Overview: architecture/index.md
+      - A Frame in the Engine: architecture/frame-flow.md
+      - Ownership and Lifetime: architecture/ownership.md
+  - Code Reference:
+      - File & Module Index: code/index.md
+      - Symbol Index: code/symbol-index.md
+      - Core:
+          - Engine loop & main: code/engine.md
+          - Game (Phase 1): code/game.md
+      - Platform:
+          - Platform: code/platform.md
+          - Input: code/input.md
+          - Logger: code/logger.md
+      - Rendering:
+          - Renderer: code/renderer.md
+          - Render types: code/render-types.md
+          - Render API (Phase 1): code/render-api.md
+      - ECS:
+          - Component: code/component.md
+          - Entity: code/entity.md
+          - Transform: code/transform.md
+          - Sprite: code/sprite.md
+          - AnimationComponent: code/animation-component.md
+      - Events:
+          - EventDispatcher: code/event-dispatcher.md
+      - Scene:
+          - Scene: code/scene.md
+          - SceneManager: code/scene-manager.md
+  - Tests:
+      - Test Index: tests/index.md
+      - Renderer & Texture: tests/test-renderer.md
+      - Platform: tests/test-platform.md
+      - Engine: tests/test-engine.md
+      - Game: tests/test-game.md
+      - Input: tests/test-input.md
+      - Logger: tests/test-logger.md
+      - Entity & Component: tests/test-component-entity.md
+      - Transform & Sprite: tests/test-transform-sprite.md
+      - EventDispatcher: tests/test-event-dispatcher.md
+      - Scene & SceneManager: tests/test-scene.md
+  - Other Files: project-files.md
+  - Glossary: glossary.md
+  - Keeping Docs Updated: contributing.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - stylesheets/extra.css
